@@ -16,13 +16,41 @@ int menu();
 int main(void) {
     Employee employees[100];
     int count = 0;
+    int choice;
+
+    do {
+        choice = menu();
+        switch(choice){
+            case 1:
+                // call add_employee(...)
+           break;
+
+       case 2:
+           // call remove_employee(...)
+           break;
+
+       case 3:
+           // call give_raise(...)
+           break;
+
+       case 4:
+           // call oldest_employee(...)
+           break;
+
+       case 5:
+           // call print_all(...)
+           break;
+   }
+
+} while(choice != 6);
     return 0;
 }
 
 int menu() {
     int choice;
     printf("WELCOME TO THE EMPLOYEE MANAGER, SELECT AN OPTION\n");
-    printf("0. Add Employee\n1. Remove Employee\n2. Give Raise\n3. Find Oldest Employee\n4. Print All Employees\n5. Exit\n");
+    printf("1. Add Employee\n2. Remove Employee\n3. Give Raise\n4. Find Oldest Employee\n5. Print All Employees\n6. Exit\n");
     scanf("%d", &choice);
     return choice;
 }
+
