@@ -77,7 +77,22 @@ int main(void) {
            break;
 
        case 3:
-           // call give_raise(...)
+           char raise_name[50];
+           float raise_amount;
+
+           printf("Enter employee name to give raise: ");
+           fgets(raise_name, sizeof(raise_name), stdin);
+           raise_name[strcspn(raise_name, "\n")] = '\0';
+
+           printf("Enter raise amount: ");
+           scanf("%f", &raise_amount);
+           getchar();
+           
+           if(give_raise(employees, count, raise_name, raise_amount)) {
+               printf("Raise given successfully!\n");
+           } else {
+               printf("Employee not found.\n");
+           }
            break;
 
        case 4:
@@ -134,6 +149,15 @@ int remove_employee(Employee employees[], int *count, char *name){
             (*count)--;
             return 1; // success
         }
+    }
+    return 0; // not found
+}
+
+int give_raise(Employee employees[], int count, char *name, float salary) {
+    Employee *found = find_employee(employees, count, name);
+    if(found != NULL) {
+        found->salary += salary;
+        return 1; // success
     }
     return 0; // not found
 }
