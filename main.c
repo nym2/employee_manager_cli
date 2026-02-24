@@ -29,41 +29,42 @@ int main(void) {
     do {
         choice = menu();
         switch(choice){
-            case 1:
-                char name[50];
-                float salary;
-                Date date_hired;
+            case 1: {
+                    char name[50];
+                    float salary;
+                    Date date_hired;
 
-                printf("Enter employee name: ");
-                fgets(name, sizeof(name), stdin);
-                name[strcspn(name, "\n")] = '\0';
+                    printf("Enter employee name: ");
+                    fgets(name, sizeof(name), stdin);
+                    name[strcspn(name, "\n")] = '\0';
 
-                printf("Enter employee salary: ");
-                scanf("%f", &salary);
-                getchar();
+                    printf("Enter employee salary: ");
+                    scanf(" %f", &salary);
+                    getchar();
 
-                printf("Enter date hired\n");
-                printf("DAY: ");
-                scanf("%02d", &date_hired.day);
-                getchar();
+                    printf("Enter date hired\n");
+                    printf("DAY: ");
+                    scanf(" %d", &date_hired.day);
+                    getchar();
 
-                printf("MONTH: ");
-                scanf("%02d", &date_hired.month);
-                getchar();
+                    printf("MONTH: ");
+                    scanf(" %d", &date_hired.month);
+                    getchar();
 
-                printf("YEAR: ");
-                scanf("%04d", &date_hired.year);
-                getchar();
+                    printf("YEAR: ");
+                    scanf(" %d", &date_hired.year);
+                    getchar();
 
-                Employee *added = add_employee(employees, &count, 100, name, salary, date_hired);
-                if(added != NULL) {
-                    printf("Employee added successfully!\n");
-                } else {
-                    printf("Failed to add employee.\n");
-                }
-           break;
+                    Employee *added = add_employee(employees, &count, 100, name, salary, date_hired);
+                    if(added != NULL) {
+                        printf("Employee added successfully!\n");
+                    } else {
+                        printf("Failed to add employee.\n");
+                    }
+                break;
+            } 
 
-       case 2:
+       case 2: {
            char remove_name[50]; 
            printf("Enter employee name to remove: ");
            fgets(remove_name, sizeof(remove_name), stdin);
@@ -75,8 +76,9 @@ int main(void) {
                printf("Employee not found.\n");
            }
            break;
+        }
 
-       case 3:
+       case 3: {
            char raise_name[50];
            float raise_amount;
 
@@ -85,23 +87,31 @@ int main(void) {
            raise_name[strcspn(raise_name, "\n")] = '\0';
 
            printf("Enter raise amount: ");
-           scanf("%f", &raise_amount);
+           scanf(" %f", &raise_amount);
            getchar();
-           
+
            if(give_raise(employees, count, raise_name, raise_amount)) {
                printf("Raise given successfully!\n");
            } else {
                printf("Employee not found.\n");
            }
            break;
+        }
 
-       case 4:
-           // call oldest_employee(...)
+       case 4: {  
+            Employee *oldest = oldest_employee(employees, count);
+            if(oldest != NULL) {
+                printf("Oldest Employee: %s | Salary: %.2f | Hired: %02d/%02d/%04d\n", oldest->name, oldest->salary, oldest->hired.day, oldest->hired.month, oldest->hired.year);
+            } else {
+                printf("No employees found.\n");
+            }
            break;
+        }
 
-       case 5:
+       case 5: {
            // call print_all(...)
            break;
+       }
    }
 
 } while(choice != 6);
@@ -110,9 +120,10 @@ int main(void) {
 
 int menu() {
     int choice;
-    printf("WELCOME TO THE EMPLOYEE MANAGER! PLEASE SELECT AN OPTION\n");
+    printf("\n===== Employee Menu =====\n");
     printf("1. Add Employee\n2. Remove Employee\n3. Give Raise\n4. Find Oldest Employee\n5. Print All Employees\n6. Exit\n");
-    scanf("%d", &choice);
+    printf("Enter choice: ");
+    scanf(" %d", &choice);
     getchar();
     return choice;
 }
@@ -160,4 +171,30 @@ int give_raise(Employee employees[], int count, char *name, float salary) {
         return 1; // success
     }
     return 0; // not found
+}
+
+Employee *oldest_employee(Employee employees[], int count) {
+    if(count == 0) return NULL;
+    Employee *oldest = &employees[0];
+
+    for (int i = 1; i < count; i++) {
+
+        if (employees[i].hired.year < oldest->hired.year) {
+            oldest = &employees[i];
+        }
+        else if (employees[i].hired.year == oldest->hired.year) {
+
+            if (employees[i].hired.month < oldest->hired.month) {
+                oldest = &employees[i];
+            }
+            else if (employees[i].hired.month == oldest->hired.month) {
+
+                if (employees[i].hired.day < oldest->hired.day) {
+                    oldest = &employees[i];
+                }
+            }
+        }
+    }
+
+    return oldest;
 }
