@@ -109,7 +109,7 @@ int main(void) {
         }
 
        case 5: {
-           // call print_all(...)
+           print_all(employees, count);
            break;
        }
    }
@@ -197,4 +197,15 @@ Employee *oldest_employee(Employee employees[], int count) {
     }
 
     return oldest;
+}
+
+void print_all(Employee employees[], int count) {
+    if(count == 0) {
+        printf("No employees to display.\n");
+        return;
+    }
+    printf("\nAll Employees:\n");
+    for(int i = 0; i < count; i++) {
+        printf("%s | Salary: %.2f | Hired: %02d/%02d/%04d\n", employees[i].name, employees[i].salary, employees[i].hired.day, employees[i].hired.month, employees[i].hired.year);
+    }
 }
