@@ -13,6 +13,8 @@ typedef struct {
 
 int menu();
 Employee *add_employee(Employee employees[], int *count, int max, char *name, float salary, Date date_hired);
+Employee *find_employee(Employee employees[], int count, char *name);
+
 
 
 
@@ -45,7 +47,7 @@ int main(void) {
                 printf("MONTH: ");
                 scanf("%02d", &date_hired.month);
                 getchar();
-                
+
                 printf("YEAR: ");
                 scanf("%04d", &date_hired.year);
                 getchar();
@@ -100,3 +102,13 @@ Employee *add_employee(Employee employees[], int *count, int max, char *name, fl
     (*count)++;
     return &employees[*count - 1];
 }
+
+Employee *find_employee(Employee employees[], int count, char *name) {
+    for(int i = 0; i < count; i++) {
+        if(strcmp(employees[i].name, name) == 0) {
+            return &employees[i];
+        }
+    }
+    return NULL;
+}
+
