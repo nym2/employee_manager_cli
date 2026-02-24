@@ -14,7 +14,10 @@ typedef struct {
 int menu();
 Employee *add_employee(Employee employees[], int *count, int max, char *name, float salary, Date date_hired);
 Employee *find_employee(Employee employees[], int count, char *name);
-
+int remove_employee(Employee employees[], int *count, char *name);
+int give_raise(Employee employees[], int count, char *name, float salary);
+Employee *oldest_employee(Employee employees[], int count);
+void print_all(Employee employees[], int count);
 
 
 
@@ -61,7 +64,16 @@ int main(void) {
            break;
 
        case 2:
-           // call remove_employee(...)
+           char remove_name[50]; 
+           printf("Enter employee name to remove: ");
+           fgets(remove_name, sizeof(remove_name), stdin);
+           remove_name[strcspn(remove_name, "\n")] = '\0';
+
+           if(remove_employee(employees, &count, remove_name)) {
+               printf("Employee removed successfully!\n");
+           } else {
+               printf("Employee not found.\n");
+           }
            break;
 
        case 3:
@@ -112,3 +124,16 @@ Employee *find_employee(Employee employees[], int count, char *name) {
     return NULL;
 }
 
+int remove_employee(Employee employees[], int *count, char *name){
+    int i, j;
+    for(i = 0; i < *count; i++) {
+        if(strcmp(employees[i].name, name) == 0) {
+            for(j = i; j < *count - 1; j++) {
+                employees[j] = employees[j + 1];
+            }
+            (*count)--;
+            return 1; // success
+        }
+    }
+    return 0; // not found
+}
