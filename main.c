@@ -6,12 +6,15 @@ typedef struct {
 } Date;
 
 typedef struct {
-    char name[30];
+    char name[50];
     float salary;
     Date hired;
 } Employee;
 
 int menu();
+Employee *add_employee(Employee employees[], int *count, int max, char *name, float salary, Date date_hired);
+
+
 
 int main(void) {
     Employee employees[100];
@@ -22,7 +25,37 @@ int main(void) {
         choice = menu();
         switch(choice){
             case 1:
-                // call add_employee(...)
+                char name[50];
+                float salary;
+                Date date_hired;
+
+                printf("Enter employee name: ");
+                fgets(name, sizeof(name), stdin);
+                name[strcspn(name, "\n")] = '\0';
+
+                printf("Enter employee salary: ");
+                scanf("%f", &salary);
+                getchar();
+
+                printf("Enter date hired\n");
+                printf("DAY: ");
+                scanf("%02d", &date_hired.day);
+                getchar();
+
+                printf("MONTH: ");
+                scanf("%02d", &date_hired.month);
+                getchar();
+                
+                printf("YEAR: ");
+                scanf("%04d", &date_hired.year);
+                getchar();
+
+                Employee *added = add_employee(employees, &count, 100, name, salary, date_hired);
+                if(added != NULL) {
+                    printf("Employee added successfully!\n");
+                } else {
+                    printf("Failed to add employee.\n");
+                }
            break;
 
        case 2:
@@ -48,9 +81,22 @@ int main(void) {
 
 int menu() {
     int choice;
-    printf("WELCOME TO THE EMPLOYEE MANAGER, SELECT AN OPTION\n");
+    printf("WELCOME TO THE EMPLOYEE MANAGER! PLEASE SELECT AN OPTION\n");
     printf("1. Add Employee\n2. Remove Employee\n3. Give Raise\n4. Find Oldest Employee\n5. Print All Employees\n6. Exit\n");
     scanf("%d", &choice);
+    getchar();
     return choice;
 }
 
+Employee *add_employee(Employee employees[], int *count, int max, char *name, float salary, Date date_hired) {
+    if (*count >= max) {
+        printf("Employee limit reached. Cannot add more employees.\n");
+        return NULL;
+    }
+    strcpy(employees[*count].name, name);
+    employees[*count].salary = salary;
+    employees[*count].hired = date_hired;
+
+    (*count)++;
+    return &employees[*count - 1];
+}
