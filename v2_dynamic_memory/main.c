@@ -19,12 +19,31 @@ int menu(void);
 
 int main(void) {
     int choice;
+    //keeps track of how many employees are currently in the array
+    int count = 0;
+    //initalised capacity so as to implement dynamic growth
+    int capacity = 4;
+    Employee *employees = calloc(capacity, sizeof(*employees));
+    if(employees == NULL) {
+        printf("memory allocation failed!!\n");
+        return 1;
+    }
 
     while(1) {
         choice = menu();
         switch(choice) {
             case 1: {
                 //add_employees
+            }
+
+            case 8: {
+                printf("Exiting program...\n");
+                free(employees);
+                return 0;
+            }
+            
+            default: {
+                printf("Invalid choice\n");
             }
         }
     }
