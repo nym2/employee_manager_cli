@@ -13,6 +13,28 @@ typedef struct {
     Date hired;
 } Employee;
 
+
+int menu(void);
+
+
+int main(void) {
+    int choice;
+
+    while(1) {
+        choice = menu();
+        switch(choice) {
+            case 1: {
+                //add_employees
+            }
+        }
+    }
+
+
+
+    return 0;
+}
+
+
 // Displays menu and returns validated user choice
 int menu(void) {
     int choice;
@@ -39,3 +61,4 @@ int menu(void) {
 
     return choice;
 }
+
