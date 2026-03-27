@@ -15,6 +15,7 @@ typedef struct {
 
 
 int menu(void);
+Employee *add_employee(Employee **employees, int *count, int *capacity, Employee new_employee);
 
 
 int main(void) {
@@ -41,7 +42,7 @@ int main(void) {
                 free(employees);
                 return 0;
             }
-            
+
             default: {
                 printf("Invalid choice\n");
             }
@@ -81,3 +82,22 @@ int menu(void) {
     return choice;
 }
 
+Employee *add_employee(Employee **employees, int *count, int *capacity, Employee new_employee){
+    //check if array is full then resize
+    if(*count == *capacity){
+        *capacity *= 2;
+        Employee *temp_employees = realloc((*employees), (*capacity) * sizeof(**employees));
+        if(temp_employees == NULL) {
+            printf("Reallocation Failed!!\n");
+            return NULL;
+        }
+        //update oringinal pointer after successful realloc
+        employees = temp_employees;
+    }
+    //insert new employee into array
+    (*employees)[*count] = new_employee;
+    //update number of stored employees
+    (*count)++;
+    //return a pointer to the newly added employee(useful for further operations)
+    return &employees[*count - 1];
+}
