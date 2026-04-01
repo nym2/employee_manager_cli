@@ -18,6 +18,7 @@ Employee **add_employee(Employee **employees, int *count, int *capacity, Employe
 void print_employees(const Employee *employees, int count);
 Employee *search_employee(Employee *employees, int count, int id);
 void update_employee(Employee *emp);
+int give_raise(Employee *emp, float percent_raise);
 
 
 int main(void) {
@@ -152,7 +153,32 @@ int main(void) {
             }
 
             case 5: {
-                
+                int id, c;
+                float percent;
+                printf("Enter Employee ID: ");
+                while(scanf("%d", &id) != 1 || id < 0){
+                    printf("invalid input! Please try again: ");
+                    //clears invalid input buffer
+                    while((c = getchar()) != '\n' && c != EOF);
+                }
+                //clears '\n' buffer
+                while((c = getchar()) != '\n' && c != EOF);
+                Employee *found = search_employee(employees, count, id);
+                if(found != NULL) {
+                    printf("Enter the percentage raise: ");
+                    while(scanf("%f", &percent) != 1 || percent < 0) {
+                        printf("Invalid input. Please try again: ");
+                        while((c = getchar()) != '\n' && c != EOF);
+                    }
+                    while((c = getchar()) != '\n' && c != EOF);
+                    give_raise(found, percent);
+                    printf("Salary updated successfully.\n");
+                    printf("New Salary: %.2f\n", found->salary);
+                } else {
+                    printf("Employee not found!!\n");
+                }
+
+                break;
             }
 
             case 8: {
