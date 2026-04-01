@@ -17,6 +17,7 @@ typedef struct {
 int menu(void);
 Employee **add_employee(Employee **employees, int *count, int *capacity, Employee new_employee);
 void print_employees(const Employee *employees, int count);
+Employee *search_employee(Employee *employees, int count, int id);
 
 
 int main(void) {
@@ -98,6 +99,11 @@ int main(void) {
             case 2: {
                 print_employees(employees, count);
                 break;
+            }
+
+            case 3: {
+                //search_employee
+
             }
 
             case 8: {
@@ -184,4 +190,13 @@ void print_employees(const Employee *employees, int count) {
                employees[i].hired.month,
                employees[i].hired.year);
     }
+}
+
+Employee *search_employee(Employee *employees, int count, int id) {
+    for(int i = 0; i < count; i++) {
+        if(employees[i].id == id) {
+            return &employees[i];
+        }
+    }
+    return NULL;
 }
