@@ -102,7 +102,30 @@ int main(void) {
             }
 
             case 3: {
-                //search_employee
+                int id, c;
+                printf("ID: ");
+                while(scanf("%d", &id) != 1 || id < 0){
+                    printf("invalid input! Please try again: ");
+                    //clears invalid input buffer
+                    while((c = getchar()) != '\n' && c != EOF);
+                }
+                //clears '\n' buffer
+                while((c = getchar()) != '\n' && c != EOF);
+                Employee *found = search_employee(employees, count, id);
+                if(found == NULL) {
+                    printf("Employee not found\n");
+                } else {
+                    printf("\nEmployee Found:\n");
+                    printf("ID: %d\n", found->id);
+                    printf("Name: %s\n", found->name);
+                    printf("Salary: %.2f\n", found->salary);
+                    printf("Hired: %02d-%02d-%d\n",
+                        found->hired.day,
+                        found->hired.month,
+                        found->hired.year);
+                }
+
+                break;
 
             }
 
