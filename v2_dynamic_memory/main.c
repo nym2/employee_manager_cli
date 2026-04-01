@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 typedef struct {
     int day, month, year;
 } Date;
@@ -152,6 +151,10 @@ int main(void) {
 
             }
 
+            case 5: {
+                
+            }
+
             case 8: {
                 printf("Exiting program...\n");
                 free(employees);
@@ -294,4 +297,9 @@ void update_employee(Employee *emp){
         }
         while((c = getchar()) != '\n' && c != EOF);
     }
+}
+
+int give_raise(Employee *emp, float percent_raise) {
+    emp->salary += emp->salary * (percent_raise / 100.0);
+    return 1;
 }
