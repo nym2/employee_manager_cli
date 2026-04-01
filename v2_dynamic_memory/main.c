@@ -16,7 +16,7 @@ typedef struct {
 
 int menu(void);
 Employee **add_employee(Employee **employees, int *count, int *capacity, Employee new_employee);
-void print_employees(Employee *employees, int count);
+void print_employees(const Employee *employees, int count);
 
 
 int main(void) {
@@ -165,8 +165,8 @@ Employee **add_employee(Employee **employees, int *count, int *capacity, Employe
     return &employees[*count - 1];
 }
 
-void print_employees(Employee *employees, int count) {
-    //implemented defensive programing
+void print_employees(const Employee *employees, int count) {
+    //implemented defensive programming to handle empty array
     if(count == 0) {
         printf("No employees to display.\n");
         return;
@@ -175,6 +175,7 @@ void print_employees(Employee *employees, int count) {
     printf("\n===== Employee List =====\n");
 
     for (int i = 0; i < count; i++) {
+        printf("\n--- Employee %d ---\n", i + 1);
         printf("ID: %d | Name: %s | Salary: %.2f | Hired: %02d-%02d-%d\n",
                employees[i].id,
                employees[i].name,
