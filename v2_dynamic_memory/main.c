@@ -130,6 +130,28 @@ int main(void) {
 
             }
 
+            case 4: {
+                int id, c;
+                printf("Enter Employee ID: ");
+                while(scanf("%d", &id) != 1 || id < 0){
+                    printf("invalid input! Please try again: ");
+                    //clears invalid input buffer
+                    while((c = getchar()) != '\n' && c != EOF);
+                }
+                //clears '\n' buffer
+                while((c = getchar()) != '\n' && c != EOF);
+                Employee *found = search_employee(employees, count, id);
+                if(found != NULL) {
+                    update_employee(found);
+                    printf("Employee updated successfully.\n");
+                } else {
+                    printf("Employee not found!!\n");
+                }
+
+                break;
+
+            }
+
             case 8: {
                 printf("Exiting program...\n");
                 free(employees);
@@ -230,6 +252,7 @@ void update_employee(Employee *emp){
 
     printf("What do you want to update?\n");
     printf("1. Name\n2. Salary\n3. Date Hired\n");
+    printf("Choice: ");
     while(scanf("%d", &choice) != 1 || choice < 1 || choice > 3) {
         printf("Invalid input! Please try again: ");
         //clear invalid input buffer
