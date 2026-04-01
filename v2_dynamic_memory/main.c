@@ -16,6 +16,7 @@ typedef struct {
 
 int menu(void);
 Employee **add_employee(Employee **employees, int *count, int *capacity, Employee new_employee);
+void print_employees(Employee *employees, int count);
 
 
 int main(void) {
@@ -94,6 +95,11 @@ int main(void) {
                 break;
             }
 
+            case 2: {
+                print_employees(employees, count);
+                break;
+            }
+
             case 8: {
                 printf("Exiting program...\n");
                 free(employees);
@@ -159,3 +165,22 @@ Employee **add_employee(Employee **employees, int *count, int *capacity, Employe
     return &employees[*count - 1];
 }
 
+void print_employees(Employee *employees, int count) {
+    //implemented defensive programing
+    if(count == 0) {
+        printf("No employees to display.\n");
+        return;
+    }
+    // Displays all stored employees in a formatted list
+    printf("\n===== Employee List =====\n");
+
+    for (int i = 0; i < count; i++) {
+        printf("ID: %d | Name: %s | Salary: %.2f | Hired: %02d-%02d-%d\n",
+               employees[i].id,
+               employees[i].name,
+               employees[i].salary,
+               employees[i].hired.day,
+               employees[i].hired.month,
+               employees[i].hired.year);
+    }
+}
