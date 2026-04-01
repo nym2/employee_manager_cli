@@ -3,11 +3,11 @@
 #include <string.h>
 
 typedef struct {
-    int day, month, year
+    int day, month, year;
 } Date;
 
 typedef struct {
-    int ID;
+    int id;
     char name[50];
     float salary;
     Date hired;
@@ -15,7 +15,7 @@ typedef struct {
 
 
 int menu(void);
-Employee *add_employee(Employee **employees, int *count, int *capacity, Employee new_employee);
+Employee **add_employee(Employee **employees, int *count, int *capacity, Employee new_employee);
 
 
 int main(void) {
@@ -34,7 +34,64 @@ int main(void) {
         choice = menu();
         switch(choice) {
             case 1: {
-                //add_employees
+                Employee new_emp;
+                int c;
+
+                printf("Enter ID: ");
+                while(scanf("%d", &new_emp.id) != 1) {
+                    printf("Invalid input. Please try again: ");
+                    //clear buffer from invalid input
+                    while((c = getchar()) != '\n' && c != EOF);
+                }
+                //clear '\n' buffer after a valid input
+                while((c = getchar()) != '\n' && c != EOF);
+
+                printf("Enter Name: ");
+                fgets(new_emp.name, sizeof(new_emp.name), stdin);
+                new_emp.name[strcspn(new_emp.name, "\n")] = '\0';
+
+                printf("Enter Salary: ");
+                while(scanf("%f", &new_emp.salary) != 1) {
+                    printf("Invalid input. Please try again");
+                    //clear buffer from invalid input
+                    while((c = getchar()) != '\n' && c != EOF);
+                }
+                //clear '\n' buffer after a valid input
+                while((c = getchar()) != '\n' && c != EOF);
+                
+                printf("Enter Date Hired\n");
+                printf("Day: ");
+                while(scanf("%d", &new_emp.hired.day) != 1) {
+                    printf("Invalid input. please try again: ");
+                    //clear buffer from invalid input
+                    while((c = getchar()) != '\n' && c != EOF);
+                }
+                //clear '\n' buffer after a valid input
+                while((c = getchar()) != '\n' && c != EOF);
+
+                printf("Month: ");
+                while(scanf("%d", &new_emp.hired.month) != 1) {
+                    printf("Invalid input. please try again: ");
+                    //clear buffer from invalid input
+                    while((c = getchar()) != '\n' && c != EOF);
+                }
+                //clear '\n' buffer after a valid input
+                while((c = getchar()) != '\n' && c != EOF);
+
+                printf("Year: ");
+                while(scanf("%d", &new_emp.hired.year) != 1) {
+                    printf("Invalid input. please try again: ");
+                    //clear buffer from invalid input
+                    while((c = getchar()) != '\n' && c != EOF);
+                }
+                //clear '\n' buffer after a valid input
+                while((c = getchar()) != '\n' && c != EOF);
+
+                Employee **added = add_employee(&employees, &count, &capacity, new_emp);
+                    if(added == NULL) {
+                        printf("Failed to add employee!!\n");
+                    }
+                break;
             }
 
             case 8: {
@@ -82,7 +139,7 @@ int menu(void) {
     return choice;
 }
 
-Employee *add_employee(Employee **employees, int *count, int *capacity, Employee new_employee){
+Employee **add_employee(Employee **employees, int *count, int *capacity, Employee new_employee){
     //check if array is full then resize
     if(*count == *capacity){
         *capacity *= 2;
@@ -92,7 +149,7 @@ Employee *add_employee(Employee **employees, int *count, int *capacity, Employee
             return NULL;
         }
         //update oringinal pointer after successful realloc
-        employees = temp_employees;
+        *employees = temp_employees;
     }
     //insert new employee into array
     (*employees)[*count] = new_employee;
@@ -101,3 +158,4 @@ Employee *add_employee(Employee **employees, int *count, int *capacity, Employee
     //return a pointer to the newly added employee(useful for further operations)
     return &employees[*count - 1];
 }
+
