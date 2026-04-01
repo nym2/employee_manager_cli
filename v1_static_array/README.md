@@ -1,6 +1,6 @@
 # Employee Manager CLI (C)
 
-## 📖 Description
+## Description
 
 The **Employee Manager CLI** is a simple command-line application written in **C** that allows users to manage employee records directly from the terminal.
 
@@ -14,7 +14,7 @@ This project demonstrates:
 
 ---
 
-## 🧱 Data Model
+## Data Model
 
 ### `Date`
 
@@ -40,7 +40,7 @@ typedef struct {
 
 ---
 
-## ⚙️ Features
+## Features
 
 The program provides a menu-driven interface:
 
@@ -65,7 +65,7 @@ The program provides a menu-driven interface:
 
 ---
 
-## 🖥️ How It Works
+## How It Works
 
 * Employees are stored in an array:
 
@@ -85,15 +85,15 @@ The pointer to `count` allows the function to update the total number of employe
 
 ---
 
-## 🛠️ Compilation & Execution
+## Compilation & Execution
 
-### ✅ Compile
+### Compile
 
 ```bash
 gcc main.c -o employee_manager
 ```
 
-### ▶️ Run
+### ▶Run
 
 ```bash
 ./employee_manager
@@ -101,7 +101,7 @@ gcc main.c -o employee_manager
 
 ---
 
-## 📚 Concepts Practiced
+## Concepts Practiced
 
 This project reinforces:
 
@@ -115,7 +115,7 @@ This project reinforces:
 
 ---
 
-## 📌 Example Output
+## Example Output
 
 ```
 ===== Employee Menu =====
@@ -137,7 +137,7 @@ Employee added successfully!
 
 ---
 
-## 🚀 Possible Improvements (Future Work)
+## Possible Improvements (Future Work)
 
 * Save/load employees from a file
 * Sort employees by salary or hire date
@@ -148,6 +148,6 @@ Employee added successfully!
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 Built as a learning project to practice **C programming fundamentals, memory handling, and structured data design**.

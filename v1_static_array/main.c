@@ -209,3 +209,4 @@ void print_all(Employee employees[], int count) {
         printf("%s | Salary: %.2f | Hired: %02d/%02d/%04d\n", employees[i].name, employees[i].salary, employees[i].hired.day, employees[i].hired.month, employees[i].hired.year);
     }
 }
+
