@@ -19,6 +19,7 @@ void print_employees(const Employee *employees, int count);
 Employee *search_employee(Employee *employees, int count, int id);
 void update_employee(Employee *emp);
 int give_raise(Employee *emp, float percent_raise);
+int remove_employee(Employee *employees, int *count, int id);
 
 
 int main(void) {
@@ -328,4 +329,19 @@ void update_employee(Employee *emp){
 int give_raise(Employee *emp, float percent_raise) {
     emp->salary += emp->salary * (percent_raise / 100.0);
     return 1;
+}
+
+int remove_employee(Employee *employees, int *count, int id){
+    int i, j;
+    for(i = 0; i < *count; i++) {
+        if(employees[i].id == id) {
+            for (j = i; j < *count - 1; j++) {
+                employees[j] = employees[j + 1];
+            }
+            (*count)--;
+            return 1; // if successful
+            
+        }
+    }
+    return 0; // if not successful
 }
