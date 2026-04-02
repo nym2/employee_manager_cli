@@ -202,6 +202,23 @@ int main(void) {
                 break;
             }
 
+            case 7: {
+                Employee *oldest = oldest_employee(employees, count);
+                if(oldest != NULL) {
+                    printf("\n===== Oldest Employee =====\n");
+                    printf("ID: %d\n", oldest->id);
+                    printf("Name: %s\n", oldest->name);
+                    printf("Salary: %.2f\n", oldest->salary);
+                    printf("Hired: %02d-%02d-%d\n",
+                        oldest->hired.day,
+                        oldest->hired.month,
+                        oldest->hired.year);
+                } else {
+                    printf("No employee found!!\n");
+                }
+
+                break;
+            }
 
             case 8: {
                 printf("Exiting program...\n");
