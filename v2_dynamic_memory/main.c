@@ -20,6 +20,7 @@ Employee *search_employee(Employee *employees, int count, int id);
 void update_employee(Employee *emp);
 int give_raise(Employee *emp, float percent_raise);
 int remove_employee(Employee *employees, int *count, int id);
+Employee *oldest_employee(Employee *emp, int count);
 
 
 int main(void) {
@@ -364,4 +365,22 @@ int remove_employee(Employee *employees, int *count, int id){
         }
     }
     return 0; // if not successful
+}
+
+Employee *oldest_employee(Employee *emp, int count) {
+    if(count == 0) return NULL;
+    Employee *oldest = &emp[0];
+
+    for(int i = 1; i < count; i++) {
+        if (emp[i].hired.year < oldest->hired.year ||
+        (emp[i].hired.year == oldest->hired.year &&
+            emp[i].hired.month < oldest->hired.month) ||
+        (emp[i].hired.year == oldest->hired.year &&
+            emp[i].hired.month == oldest->hired.month &&
+            emp[i].hired.day < oldest->hired.day)) {
+
+            oldest = &emp[i];
+        }
+    }
+    return oldest;
 }
