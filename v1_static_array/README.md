@@ -149,5 +149,5 @@ Employee added successfully!
 ---
 
 ## Author
-
+Nympha Pamba.
 Built as a learning project to practice **C programming fundamentals, memory handling, and structured data design**.
