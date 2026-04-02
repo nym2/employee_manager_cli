@@ -182,6 +182,26 @@ int main(void) {
                 break;
             }
 
+            case 6: {
+                int id, c;
+                printf("Enter Employee ID: ");
+                while(scanf("%d", &id) != 1 || id < 0){
+                    printf("invalid input! Please try again: ");
+                    //clears invalid input buffer
+                    while((c = getchar()) != '\n' && c != EOF);
+                }
+                //clears '\n' buffer
+                while((c = getchar()) != '\n' && c != EOF);
+                if(remove_employee(employees, &count, id)) {
+                    printf("Employee removed successfuly!!\n");
+                } else {
+                    printf("Employee not found!!\n");
+                }
+
+                break;
+            }
+
+
             case 8: {
                 printf("Exiting program...\n");
                 free(employees);
