@@ -282,7 +282,7 @@ Employee **add_employee(Employee **employees, int *count, int *capacity, Employe
     //update number of stored employees
     (*count)++;
     //return a pointer to the newly added employee(useful for further operations)
-    return &(employees)[*count - 1];
+    return &(*employees)[*count - 1];
 }
 
 void print_employees(const Employee *employees, int count) {
