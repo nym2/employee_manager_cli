@@ -8,7 +8,7 @@ This project demonstrates:
 
 * Use of **structs** to model real-world data
 * **Pointers** and pass-by-reference for modifying arrays
-* **Dynamic-style management** of records using a fixed-size array
+* **fixed-capacity array managementt** of records using a fixed-size array
 * Input handling with `fgets`, `scanf`, and buffer control
 * Searching, updating, and comparing structured data (dates)
 
