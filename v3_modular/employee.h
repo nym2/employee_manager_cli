@@ -12,4 +12,8 @@ typedef struct {
     Date hired;
 } Employee;
 
+int add_employee(Employee **employees, int *count, int *capacity, Employee new_employee);
+void update_employee(Employee *emp);
+int remove_employee(Employee *employees, int *count, int id);
+
 #endif
