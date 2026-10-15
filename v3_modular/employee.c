@@ -25,6 +25,7 @@ int add_employee(Employee **employees, int *count, int *capacity, Employee new_e
     return 1;
 }
 
+
 void update_employee(Employee *emp){
     int choice, c;
 
