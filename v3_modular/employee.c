@@ -73,3 +73,19 @@ void update_employee(Employee *emp){
         while((c = getchar()) != '\n' && c != EOF);
     }
 }
+
+
+int remove_employee(Employee *employees, int *count, int id){
+    int i, j;
+    for(i = 0; i < *count; i++) {
+        if(employees[i].id == id) {
+            for (j = i; j < *count - 1; j++) {
+                employees[j] = employees[j + 1];
+            }
+            (*count)--;
+            return 1; // if successful
+            
+        }
+    }
+    return 0; // if not successful
+}
