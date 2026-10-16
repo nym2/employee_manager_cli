@@ -3,7 +3,7 @@
 
 #include "employee.h"
 
-int load_employees();
-int save_employees();
+int load_employees(Employee **employees, int *count, int *capacity);
+int save_employees(const Employee *employees, int count);
 
 #endif
