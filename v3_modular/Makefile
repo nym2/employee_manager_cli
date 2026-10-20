@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
 TARGET = employee_manager
-SOURCES = main.c employee.c
+SOURCES = main.c employee.c storage.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(TARGET)
