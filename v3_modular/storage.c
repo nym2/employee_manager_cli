@@ -10,11 +10,7 @@ int load_employees(Employee **employees, int *count, int *capacity)
 {
     FILE *file = fopen(EMPLOYEE_FILE, "r");
 
-    if (file == NULL)
-    {
-        perror("Could not open employee file");
-        return 0;
-    }
+    
 
     /* We will read employee records here. */
 
